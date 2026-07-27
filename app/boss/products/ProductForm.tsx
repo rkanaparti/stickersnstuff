@@ -48,8 +48,9 @@ export default function ProductForm({ p }: { p?: Product }) {
         <label htmlFor="colors">Colors <span className="muted">(comma separated)</span></label>
         <input id="colors" name="colors" defaultValue={p?.colors.join(', ')} placeholder="white, black, sage" />
 
-        <label htmlFor="blurb">Say something about it <span className="muted">(optional)</span></label>
-        <textarea id="blurb" name="blurb" rows={2} defaultValue={p?.blurb || ''} />
+        <label htmlFor="blurb">Product details <span className="muted">(size, material, care — shown on the product page)</span></label>
+        <textarea id="blurb" name="blurb" rows={4} defaultValue={p?.blurb || ''}
+          placeholder={'3in vinyl sticker, waterproof, dishwasher safe\nor: 100% cotton hoodie, true to size, machine wash cold'} />
 
         <label htmlFor="stock">How many you have <span className="muted">(blank = unlimited)</span></label>
         <input id="stock" name="stock" type="number" min="0" inputMode="numeric" defaultValue={p?.stock ?? ''} />

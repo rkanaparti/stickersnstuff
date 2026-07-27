@@ -23,7 +23,7 @@ export default async function Home({
   `) as Product[];
 
   return (
-    <main className="wrap">
+    <main className="wrap wrap-wide">
       <header className="masthead">
         {t.logo_url && <img className="logo" src={t.logo_url} alt="" />}
         <h1>{t.store_name}</h1>

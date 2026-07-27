@@ -24,14 +24,20 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
 
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+.wrap-wide { max-width: 1320px; }
 
 /* ---------- masthead ---------- */
-.masthead { padding: 34px 0 22px; text-align: center; }
-.masthead .logo { height: 76px; width: auto; margin-bottom: 12px; }
+.masthead { padding: 22px 0 14px; text-align: center; }
+.masthead .logo { height: auto; width: 96px; margin-bottom: 6px; display: inline-block; }
 .masthead h1 { font-size: clamp(2.4rem, 9vw, 4rem); }
 .masthead .tagline {
-  margin: 10px 0 0; font-size: 0.85rem; letter-spacing: 0.18em;
+  margin: 8px 0 0; font-size: 0.85rem; letter-spacing: 0.18em;
   text-transform: uppercase; opacity: 0.6;
+}
+
+@media (min-width: 780px) {
+  .masthead { padding: 30px 0 20px; }
+  .masthead .logo { width: 246px; margin-bottom: 4px; }
 }
 
 /* ---------- signature: sticker-sheet grid ---------- */

@@ -37,7 +37,14 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <h1 style={{ fontSize: 'clamp(1.9rem,7vw,2.8rem)', marginTop: 22 }}>{p.name}</h1>
       <p style={{ fontSize: '1.3rem', marginTop: 6 }}>{money(p.price_cents)}</p>
-      {p.blurb && <p className="muted">{p.blurb}</p>}
+      {p.blurb && (
+        <div className="card" style={{ marginTop: 20, whiteSpace: 'pre-line' }}>
+          <div className="muted" style={{ fontSize: '0.78rem', letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: 6 }}>
+            Details
+          </div>
+          {p.blurb}
+        </div>
+      )}
 
       <Picker product={JSON.parse(JSON.stringify(p))} />
       <BagLink />
