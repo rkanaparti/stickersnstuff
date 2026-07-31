@@ -26,6 +26,19 @@ a { color: inherit; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
 .wrap-wide { max-width: 1320px; }
 
+/* ---------- site nav ---------- */
+.sitenav {
+  position: sticky; top: 0; z-index: 25;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+.sitenav-row {
+  display: flex; gap: 8px; padding: 12px 20px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.sitenav-row::-webkit-scrollbar { display: none; }
+
 /* ---------- masthead ---------- */
 .masthead { padding: 22px 0 14px; text-align: center; }
 .masthead .logo { height: auto; width: 96px; margin-bottom: 6px; display: inline-block; }
@@ -113,12 +126,14 @@ input[type=color] { padding: 4px; height: 54px; cursor: pointer; }
 .bignum { font-size: clamp(3rem, 14vw, 5.2rem); line-height: 1; }
 
 .tabbar {
-  position: sticky; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr);
+  position: sticky; bottom: 0; display: flex; overflow-x: auto; scrollbar-width: none;
   background: var(--ink); box-shadow: 0 -8px 28px -14px rgba(0,0,0,.55);
-  border-radius: 22px 22px 0 0; overflow: hidden; margin-top: 26px;
+  border-radius: 22px 22px 0 0; margin-top: 26px;
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+.tabbar::-webkit-scrollbar { display: none; }
 .tabbar a {
+  flex: 1 0 68px;
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   padding: 13px 4px 14px; text-align: center; text-decoration: none;
   font-size: 0.72rem; font-weight: 700; color: color-mix(in srgb, var(--paper) 55%, transparent);

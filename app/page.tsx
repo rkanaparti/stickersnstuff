@@ -3,6 +3,7 @@ import { sql, getTheme, money, Product } from '@/lib/db';
 import BagLink from '@/components/BagLink';
 import FilterBar from '@/components/FilterBar';
 import StickerCard from '@/components/StickerCard';
+import CustomTeeBanner from '@/components/CustomTeeBanner';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,6 +30,10 @@ export default async function Home({
         <h1>{t.store_name}</h1>
         <p className="tagline">{t.tagline}</p>
       </header>
+
+      <div style={{ paddingTop: 6 }}>
+        <CustomTeeBanner />
+      </div>
 
       <Suspense fallback={<div style={{ height: 96 }} />}>
         <FilterBar />

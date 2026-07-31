@@ -21,8 +21,23 @@ export type Order = {
   channel: string; status: string; total_cents: number; created_at: string;
 };
 
+export type Contact = {
+  heading: string; body: string;
+  email: string | null; phone: string | null; address: string | null; hours: string | null;
+};
+
+export type CustomRequest = {
+  id: number; name: string; email: string | null; phone: string | null; note: string | null;
+  image_url: string; shirt_color: string; shirt_type: string; status: string; created_at: string;
+};
+
 export async function getTheme(): Promise<Theme> {
   const rows = (await sql`select * from theme where id = 1`) as Theme[];
+  return rows[0];
+}
+
+export async function getContact(): Promise<Contact> {
+  const rows = (await sql`select * from contact where id = 1`) as Contact[];
   return rows[0];
 }
 
@@ -58,6 +73,20 @@ export const NEXT_STATUS: Record<string, string | null> = {
 
 export const NEXT_LABEL: Record<string, string> = {
   new: 'Mark paid', paid: 'Sent to printer', ordered: 'It arrived', ready: 'Delivered!',
+};
+
+export const CUSTOM_STATUSES = ['new', 'reviewed', 'done'] as const;
+
+export const CUSTOM_STATUS_LABEL: Record<string, string> = {
+  new: 'New request', reviewed: 'Reviewed', done: 'Done',
+};
+
+export const CUSTOM_NEXT_STATUS: Record<string, string | null> = {
+  new: 'reviewed', reviewed: 'done', done: null,
+};
+
+export const CUSTOM_NEXT_LABEL: Record<string, string> = {
+  new: 'Mark reviewed', reviewed: 'Mark done',
 };
 
 export function slugify(s: string) {

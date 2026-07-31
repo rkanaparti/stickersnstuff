@@ -65,3 +65,30 @@ create table if not exists order_items (
 
 create index if not exists orders_status_idx on orders (status, created_at desc);
 create index if not exists products_active_idx on products (active, sort, id);
+
+create table if not exists contact (
+  id       int primary key default 1,
+  heading  text not null default 'Get in touch',
+  body     text not null default '',
+  email    text,
+  phone    text,
+  address  text,
+  hours    text,
+  constraint contact_single check (id = 1)
+);
+insert into contact (id) values (1) on conflict do nothing;
+
+create table if not exists custom_requests (
+  id          serial primary key,
+  name        text not null,
+  email       text,
+  phone       text,
+  note        text,
+  image_url   text not null,
+  shirt_color text not null,           -- black | white | gray | navy
+  shirt_type  text not null,           -- girly | hoodie
+  status      text not null default 'new',  -- new | reviewed | done
+  created_at  timestamptz not null default now()
+);
+
+create index if not exists custom_requests_status_idx on custom_requests (status, created_at desc);

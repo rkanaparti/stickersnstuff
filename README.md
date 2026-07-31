@@ -31,9 +31,21 @@ Until then the store runs pickup-only, which is the right default.
 Note: Stripe requires the account holder to be 18+, so that account is yours, not hers.
 Same for the Instagram/TikTok ad account.
 
+## Updating an existing database
+
+Added a new feature that needs new tables (like the `contact` or `custom_requests`
+tables)? Open the Neon SQL editor and run just the new `create table` statements
+from `schema.sql` — they're all `if not exists`, so re-running the whole file is
+safe too.
+
 ## How it's wired
 
-- `app/` — storefront (`/`, `/p/[slug]`, `/bag`) and admin (`/boss/*`)
+- `app/` — storefront (`/`, `/p/[slug]`, `/bag`, `/contact`, `/custom`) and admin (`/boss/*`)
+- `/custom` lets a customer upload a design and pick a shirt color/type; it creates a
+  request in `custom_requests` (no price, no checkout) that you review under
+  `/boss/custom` and follow up on directly.
+- `/contact` renders whatever you type into `/boss/contact` (heading, body text,
+  email, phone, address, hours) from the `contact` table.
 - `lib/db.ts` — Neon client and shared types. Plain SQL, no ORM, no migration tool.
 - Every color, font, and corner radius lives in the `theme` table and renders as CSS
   variables in `app/layout.tsx`. Changing the look is a database update, not a deploy.

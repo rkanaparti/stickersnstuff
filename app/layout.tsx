@@ -1,5 +1,6 @@
 import './globals.css';
 import { getTheme } from '@/lib/db';
+import NavBar from '@/components/NavBar';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,7 +35,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style dangerouslySetInnerHTML={{ __html: vars }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <NavBar />
+        {children}
+      </body>
     </html>
   );
 }

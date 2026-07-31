@@ -101,6 +101,31 @@ export async function saveTheme(form: FormData) {
   redirect('/boss/look?saved=1');
 }
 
+export async function saveContact(form: FormData) {
+  await guard();
+  await sql`
+    update contact set
+      heading = ${String(form.get('heading') || '').trim()},
+      body    = ${String(form.get('body') || '').trim()},
+      email   = ${String(form.get('email') || '').trim() || null},
+      phone   = ${String(form.get('phone') || '').trim() || null},
+      address = ${String(form.get('address') || '').trim() || null},
+      hours   = ${String(form.get('hours') || '').trim() || null}
+    where id = 1
+  `;
+  revalidatePath('/contact');
+  redirect('/boss/contact?saved=1');
+}
+
+export async function updateCustomRequestStatus(form: FormData) {
+  await guard();
+  const id = Number(form.get('id'));
+  const status = String(form.get('status'));
+  await sql`update custom_requests set status = ${status} where id = ${id}`;
+  revalidatePath('/boss/custom');
+  redirect('/boss/custom');
+}
+
 export async function saveAiSettings(form: FormData) {
   await guard();
   const key = String(form.get('openai_api_key') || '').trim();

@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation';
 const TABS = [
   { href: '/boss', label: 'Money', icon: '💰' },
   { href: '/boss/orders', label: 'Orders', icon: '📦' },
+  { href: '/boss/custom', label: 'Custom', icon: '👕' },
   { href: '/boss/products', label: 'Stuff', icon: '🏷️' },
   { href: '/boss/make', label: 'Make', icon: '✨' },
   { href: '/boss/look', label: 'Look', icon: '🎨' },
+  { href: '/boss/contact', label: 'Contact', icon: '✉️' },
 ];
 
 export default function BossNav() {
