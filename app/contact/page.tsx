@@ -13,9 +13,7 @@ export default async function ContactPage() {
 
   return (
     <main className="wrap" style={{ paddingBottom: 80 }}>
-      <header className="masthead">
-        <h1 style={{ fontSize: 'clamp(2rem, 7vw, 3rem)' }}>{c.heading}</h1>
-      </header>
+      <h1 style={{ fontSize: '2rem', margin: '26px 0 4px' }}>{c.heading}</h1>
 
       {c.body && (
         <div className="card" style={{ whiteSpace: 'pre-line' }}>

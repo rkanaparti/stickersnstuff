@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useRef } from 'react';
 
 export default function StickerCard({
-  href, image, name, price, flag,
-}: { href: string; image: string; name: string; price: string; flag?: string }) {
+  href, image, icon, name, price, flag,
+}: { href: string; image?: string; icon?: string; name: string; price: string; flag?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
 
   function move(e: React.PointerEvent) {
@@ -37,7 +37,13 @@ export default function StickerCard({
     >
       {flag && <span className="flag">{flag}</span>}
       <span className="shine" aria-hidden />
-      <img className="shot" src={image} alt={name} />
+      {icon ? (
+        <div className="shot" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>
+          {icon}
+        </div>
+      ) : (
+        <img className="shot" src={image} alt={name} />
+      )}
       <div className="name">{name}</div>
       <div className="price">{price}</div>
     </Link>

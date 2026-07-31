@@ -27,17 +27,9 @@ a { color: inherit; }
 .wrap-wide { max-width: 1320px; }
 
 /* ---------- site nav ---------- */
-.sitenav {
-  position: sticky; top: 0; z-index: 25;
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(0,0,0,.06);
-}
-.sitenav-row {
-  display: flex; gap: 8px; padding: 12px 20px;
-  overflow-x: auto; scrollbar-width: none;
-}
-.sitenav-row::-webkit-scrollbar { display: none; }
+.sitenav { display: flex; justify-content: center; padding-bottom: 22px; }
+.sitenav-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.sitenav a { text-decoration: none; }
 
 /* ---------- masthead ---------- */
 .masthead { padding: 22px 0 14px; text-align: center; }

@@ -1,6 +1,6 @@
 import './globals.css';
 import { getTheme } from '@/lib/db';
-import NavBar from '@/components/NavBar';
+import SiteHeader from '@/components/SiteHeader';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,7 +36,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <style dangerouslySetInnerHTML={{ __html: vars }} />
       </head>
       <body>
-        <NavBar />
+        <SiteHeader storeName={t.store_name} tagline={t.tagline} logoUrl={t.logo_url} />
         {children}
       </body>
     </html>
