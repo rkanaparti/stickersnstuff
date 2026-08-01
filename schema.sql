@@ -86,7 +86,10 @@ create table if not exists custom_requests (
   note        text,
   image_url   text not null,
   shirt_color text not null,           -- black | white | gray | navy
-  shirt_type  text not null,           -- girly | hoodie
+  size        text,                    -- YS | YM | YL | S | M | L | XL
+  fit_type    text,                    -- masculine | feminine
+  shirt_type  text not null,           -- tshirt | hoodie
+  placement   text,                    -- front | back
   status      text not null default 'new',  -- new | reviewed | done
   created_at  timestamptz not null default now()
 );

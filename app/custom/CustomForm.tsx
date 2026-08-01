@@ -1,10 +1,15 @@
 'use client';
 import { useState } from 'react';
-import { SHIRT_COLORS, SHIRT_COLOR_SWATCH, SHIRT_TYPES } from '@/lib/constants';
+import {
+  SHIRT_COLORS, SHIRT_COLOR_SWATCH, SHIRT_SIZES, FIT_TYPES, GARMENT_TYPES, PLACEMENTS,
+} from '@/lib/constants';
 
 export default function CustomForm() {
   const [color, setColor] = useState<string>(SHIRT_COLORS[0]);
-  const [type, setType] = useState<string>(SHIRT_TYPES[0].key);
+  const [size, setSize] = useState<string>(SHIRT_SIZES[0]);
+  const [fit, setFit] = useState<string>(FIT_TYPES[0].key);
+  const [garment, setGarment] = useState<string>(GARMENT_TYPES[0].key);
+  const [placement, setPlacement] = useState<string>(PLACEMENTS[0].key);
   const [fileName, setFileName] = useState('');
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
@@ -16,7 +21,10 @@ export default function CustomForm() {
     setBusy(true);
     const fd = new FormData(e.currentTarget);
     fd.set('shirt_color', color);
-    fd.set('shirt_type', type);
+    fd.set('size', size);
+    fd.set('fit_type', fit);
+    fd.set('shirt_type', garment);
+    fd.set('placement', placement);
     try {
       const res = await fetch('/api/custom-request', { method: 'POST', body: fd });
       let data: any = null;
@@ -71,12 +79,42 @@ export default function CustomForm() {
         ))}
       </div>
 
+      <label>Size</label>
+      <div className="chips">
+        {SHIRT_SIZES.map((s) => (
+          <label key={s} className="chip">
+            <input type="radio" name="size_pick" checked={size === s} onChange={() => setSize(s)} />
+            {s}
+          </label>
+        ))}
+      </div>
+
+      <label>Fit</label>
+      <div className="chips">
+        {FIT_TYPES.map((f) => (
+          <label key={f.key} className="chip">
+            <input type="radio" name="fit_pick" checked={fit === f.key} onChange={() => setFit(f.key)} />
+            {f.label}
+          </label>
+        ))}
+      </div>
+
       <label>Shirt type</label>
       <div className="chips">
-        {SHIRT_TYPES.map((t) => (
-          <label key={t.key} className="chip">
-            <input type="radio" name="shirt_type_pick" checked={type === t.key} onChange={() => setType(t.key)} />
-            {t.label}
+        {GARMENT_TYPES.map((g) => (
+          <label key={g.key} className="chip">
+            <input type="radio" name="garment_pick" checked={garment === g.key} onChange={() => setGarment(g.key)} />
+            {g.label}
+          </label>
+        ))}
+      </div>
+
+      <label>Design placement</label>
+      <div className="chips">
+        {PLACEMENTS.map((p) => (
+          <label key={p.key} className="chip">
+            <input type="radio" name="placement_pick" checked={placement === p.key} onChange={() => setPlacement(p.key)} />
+            {p.label}
           </label>
         ))}
       </div>
@@ -96,7 +134,7 @@ export default function CustomForm() {
       </label>
 
       <label htmlFor="note">Anything else we should know? <span className="muted">(optional)</span></label>
-      <textarea id="note" name="note" rows={3} placeholder="Placement, size, timeline..." />
+      <textarea id="note" name="note" rows={3} placeholder="Timeline, exact placement, etc." />
 
       {err && <p style={{ color: '#B4304A' }}>{err}</p>}
 

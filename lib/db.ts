@@ -28,7 +28,8 @@ export type Contact = {
 
 export type CustomRequest = {
   id: number; name: string; email: string | null; phone: string | null; note: string | null;
-  image_url: string; shirt_color: string; shirt_type: string; status: string; created_at: string;
+  image_url: string; shirt_color: string; size: string; fit_type: string; shirt_type: string;
+  placement: string; status: string; created_at: string;
 };
 
 export async function getTheme(): Promise<Theme> {

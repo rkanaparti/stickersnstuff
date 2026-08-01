@@ -32,7 +32,10 @@ export default async function CustomRequests() {
                   {[r.email, r.phone].filter(Boolean).join(' · ')}
                 </div>
               )}
-              <div style={{ fontSize: '0.92rem', marginTop: 4 }}>{r.shirt_color} · {r.shirt_type}</div>
+              <div style={{ fontSize: '0.92rem', marginTop: 4 }}>
+                {[r.shirt_color, r.size, r.fit_type, r.shirt_type, r.placement && `${r.placement} print`]
+                  .filter(Boolean).join(' · ')}
+              </div>
               {r.note && <div className="muted" style={{ fontSize: '0.88rem', marginTop: 4 }}>{r.note}</div>}
             </div>
           </div>
