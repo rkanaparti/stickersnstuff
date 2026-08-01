@@ -24,7 +24,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         className="shot"
         src={p.images[0] || ''}
         alt={p.name}
-        style={{ borderRadius: 'var(--radius)', maxWidth: 460, margin: '0 auto' }}
+        style={{ borderRadius: 'var(--radius)', width: '100%', maxWidth: 460, display: 'block', margin: '0 auto' }}
       />
 
       {p.images.length > 1 && (
